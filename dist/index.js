@@ -194,12 +194,12 @@ function launch() {
             core.setOutput("logFileName", logFileName);
             core.saveState(STATE_PORT, port);
             let params = (yield getTunnelParams(port)).join(" ");
-            let dockerPullCmd = "docker pull lambdatest/tunnel:latest";
+            let dockerPullCmd = "docker pull lambdatest/tunnel:arm64v8";
             core.info(dockerPullCmd);
             child_process_1.default.execSync(dockerPullCmd, {
                 stdio: "inherit",
             });
-            let dockerRunCmd = `docker run --name=${name} -d=true --net=host lambdatest/tunnel:latest ${params}`;
+            let dockerRunCmd = `docker run --name=${name} -d=true --net=host lambdatest/tunnel:arm64v8 ${params}`;
             core.info(dockerRunCmd);
             child_process_1.default.execSync(dockerRunCmd, {
                 stdio: "inherit",

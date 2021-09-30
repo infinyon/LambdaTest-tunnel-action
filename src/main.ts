@@ -28,13 +28,13 @@ async function launch() {
     core.saveState(STATE_PORT, port);
     let params: string = (await getTunnelParams(port)).join(" ");
 
-    let dockerPullCmd: string = "docker pull lambdatest/tunnel:latest";
+    let dockerPullCmd: string = "docker pull lambdatest/tunnel:arm64v8";
     core.info(dockerPullCmd);
     childProcess.execSync(dockerPullCmd, {
       stdio: "inherit",
     });
 
-    let dockerRunCmd: string = `docker run --name=${name} -d=true --net=host lambdatest/tunnel:latest ${params}`;
+    let dockerRunCmd: string = `docker run --name=${name} -d=true --net=host lambdatest/tunnel:arm64v8 ${params}`;
     core.info(dockerRunCmd);
     childProcess.execSync(dockerRunCmd, {
       stdio: "inherit",
